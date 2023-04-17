@@ -20,12 +20,11 @@ email_client = sendEmail(
 try:
     date_ = datetime.now().date()
     if isWorkdays(date_):
-        num = random.randint(1, 600)
-        sleep(num)
         WebBrowser = Browser()
         WebBrowser.get_url_page(qd_index_url)
         browser = WebBrowser.browser
-        sleep(10)
+        num = random.randint(10, 150)
+        sleep(num)
 
         # 签到
         # 输入账号
