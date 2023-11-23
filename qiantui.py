@@ -25,15 +25,15 @@ try:
         WebBrowser = Browser()
         WebBrowser.get_url_page(qt_index_url)
         browser = WebBrowser.browser
-        num = random.randint(10, 150)
+        num = random.randint(10, 15)
         sleep(num)
 
         # 签到
         # 输入账号
         try:
-            acount_element = browser.find_element(
+            acount_element = Browser.find_element(
                 By.XPATH,
-                "/html/body/div[1]/div[1]/div/div/div[2]/div/div/div/div/div[4]/div[1]/div[2]"
+                "/html/body/div[1]/div[1]/div/div/div[2]/div/div/div[1]/div/div[4]/div[1]/div[2]/input"
             )
         except:
             browser.refresh()
@@ -41,31 +41,26 @@ try:
         finally:
             browser.find_element(
                 By.XPATH,
-                "/html/body/div[1]/div[1]/div/div/div[2]/div/div/div/div/div[4]/div[1]/div[2]"
-            ).click()
-            sleep(1)
-            browser.find_element(
-                By.XPATH,
-                "/html/body/div[1]/div[1]/div/div/div[2]/div/div/div/div/div[4]/div[1]/div[2]/input"
+                "/html/body/div[1]/div[1]/div/div/div[2]/div/div/div[1]/div/div[4]/div[1]/div[2]/input"
             ).send_keys(account)
             sleep(3)
 
             # 输入密码
             browser.find_element(
                 By.XPATH,
-                "/html/body/div[1]/div[1]/div/div/div[2]/div/div/div/div/div[4]/div[2]/div[2]"
+                "/html/body/div[1]/div[1]/div/div/div[2]/div/div/div[1]/div/div[4]/div[2]/div[2]/input"
             ).click()
             sleep(1)
             browser.find_element(
                 By.XPATH,
-                "/html/body/div[1]/div[1]/div/div/div[2]/div/div/div/div/div[4]/div[2]/div[2]/input"
+                "/html/body/div[1]/div[1]/div/div/div[2]/div/div/div[1]/div/div[4]/div[2]/div[2]/input"
             ).send_keys(password)
             sleep(3)
 
             # 点击登录
             browser.find_element(
                 By.XPATH,
-                "/html/body/div[1]/div[1]/div/div/div[2]/div/div/div/div/div[6]/button"
+                "/html/body/div[1]/div[1]/div/div/div[2]/div/div/div[1]/div/div[6]/button"
             ).click()
             sleep(20)
 

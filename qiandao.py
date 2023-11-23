@@ -23,7 +23,7 @@ try:
         WebBrowser = Browser()
         WebBrowser.get_url_page(qd_index_url)
         browser = WebBrowser.browser
-        num = random.randint(10, 150)
+        num = random.randint(10, 30)
         sleep(num)
 
         # 签到
@@ -31,7 +31,7 @@ try:
         try:
             acount_element = Browser.find_element(
                 By.XPATH,
-                "/html/body/div[1]/div[1]/div/div/div[2]/div/div/div/div/div[4]/div[1]/div[2]"
+                "/html/body/div[1]/div[1]/div/div/div[2]/div/div/div[1]/div/div[4]/div[1]/div[2]/input"
             )
         except:
             browser.refresh()
@@ -39,52 +39,47 @@ try:
         finally:
             browser.find_element(
                 By.XPATH,
-                "/html/body/div[1]/div[1]/div/div/div[2]/div/div/div/div/div[4]/div[1]/div[2]"
-            ).click()
-            sleep(1)
-            browser.find_element(
-                By.XPATH,
-                "/html/body/div[1]/div[1]/div/div/div[2]/div/div/div/div/div[4]/div[1]/div[2]/input"
+                "/html/body/div[1]/div[1]/div/div/div[2]/div/div/div[1]/div/div[4]/div[1]/div[2]/input"
             ).send_keys(account)
             sleep(3)
 
             # 输入密码
             browser.find_element(
                 By.XPATH,
-                "/html/body/div[1]/div[1]/div/div/div[2]/div/div/div/div/div[4]/div[2]/div[2]"
+                "/html/body/div[1]/div[1]/div/div/div[2]/div/div/div[1]/div/div[4]/div[2]/div[2]/input"
             ).click()
             sleep(1)
             browser.find_element(
                 By.XPATH,
-                "/html/body/div[1]/div[1]/div/div/div[2]/div/div/div/div/div[4]/div[2]/div[2]/input"
+                "/html/body/div[1]/div[1]/div/div/div[2]/div/div/div[1]/div/div[4]/div[2]/div[2]/input"
             ).send_keys(password)
             sleep(3)
 
             # 点击登录
             browser.find_element(
                 By.XPATH,
-                "/html/body/div[1]/div[1]/div/div/div[2]/div/div/div/div/div[6]/button"
+                "/html/body/div[1]/div[1]/div/div/div[2]/div/div/div[1]/div/div[6]/button"
             ).click()
             sleep(10)
 
-        try:
-            alert = browser.switch_to.alert
-        except:
-            browser.refresh()
-            sleep(20)
-            alert = browser.switch_to.alert
-        finally:
-            alert_dict = json.loads(alert.text)
-            code = alert_dict.get("code")
-            status = alert_dict.get("status")
-            alert.accept()
-            browser.close()
-        if code == 200 or status:
-            subject = "签到成功"
-            msg = f"签到成功,时间：{datetime.now()},msg:{alert_dict}"
-        else:
-            subject = "签到失败"
-            msg = f"签到失败,时间：{datetime.now()},msg:{alert_dict}"
+            try:
+                alert = browser.switch_to.alert
+            except:
+                browser.refresh()
+                sleep(20)
+                alert = browser.switch_to.alert
+            finally:
+                alert_dict = json.loads(alert.text)
+                code = alert_dict.get("code")
+                status = alert_dict.get("status")
+                alert.accept()
+                browser.close()
+            if code == 200 or status:
+                subject = "签到成功"
+                msg = f"签到成功,时间：{datetime.now()},msg:{alert_dict}"
+            else:
+                subject = "签到失败"
+                msg = f"签到失败,时间：{datetime.now()},msg:{alert_dict}"
     else:
         subject = "今天不是工作日，无需签到"
         msg = f"今天不是工作日,无需签到,时间：{datetime.now()}"

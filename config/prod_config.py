@@ -1,6 +1,6 @@
-qd_index_url = "https://weapp.eteams.cn/mobile/market/temp/in"
-qt_index_url = "https://weapp.eteams.cn/mobile/market/temp/out"
+qd_index_url = "https://www.e-cology.com.cn/mobile/market/temp/in"
+qt_index_url = "https://www.e-cology.com.cn/mobile/market/temp/out"
 
 
 account = "13551169917"
-password = "songwei"
+password = "songwei7601159."
